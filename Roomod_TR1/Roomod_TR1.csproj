@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
-    <AssemblyName>Roomod_TR3</AssemblyName>
-    <Product>TR3 extension for Roomod</Product>
+    <AssemblyName>Roomod_TR1</AssemblyName>
+    <Product>Roomod TR1 Extension</Product>
     <Version>0.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
@@ -12,18 +12,14 @@
       https://nuget.bepinex.dev/v3/index.json;
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
-    <RootNamespace>Roomod_TR3</RootNamespace>
+    <RootNamespace>Roomod_TR1</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-    <PackageReference Include="UnityEngine.Modules" Version="2017.4.40" IncludeAssets="compile" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Roomod\Roomod.csproj" />
+    <PackageReference Include="UnityEngine.Modules" Version="4.5.0" IncludeAssets="compile" />
   </ItemGroup>
 
 	<ItemGroup>
@@ -36,7 +32,11 @@
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\Roomod\Roomod.csproj" />
+  </ItemGroup>
+  
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy .\bin\Debug\net35\Roomod_TR3.dll ..\build\Roomod_TR3.dll" />
+    <Exec Command="copy .\bin\Debug\net35\Roomod_TR1.dll ..\build\Roomod_TR1.dll" />
   </Target>
 </Project>

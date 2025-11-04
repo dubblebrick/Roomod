@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
@@ -19,14 +19,8 @@
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.*" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-    <PackageReference Include="UnityEngine.Modules" Version="2017.3.0" IncludeAssets="compile" />
+    <PackageReference Include="UnityEngine.Modules" Version="4.5.0" IncludeAssets="compile" />
   </ItemGroup>
-
-	<ItemGroup>
-		<Reference Include="Assembly-CSharp.dll">
-			<HintPath>lib\Assembly-CSharp.dll</HintPath>
-		</Reference>
-	</ItemGroup>
   
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />

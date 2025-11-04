@@ -11,12 +11,12 @@ namespace Roomod
         {
             None = -1,
             English,
+            Spanish,
             French,
             German,
             Italian,
             Portuguese,
             Russian,
-            Spanish,
             Turkish
         }
 
@@ -26,6 +26,8 @@ namespace Roomod
             {
                 case "English":
                     return Language.English;
+                case "Spanish":
+                    return Language.Spanish;
                 case "French":
                     return Language.French;
                 case "German":
@@ -36,8 +38,6 @@ namespace Roomod
                     return Language.Portuguese;
                 case "Russian":
                     return Language.Russian;
-                case "Spanish":
-                    return Language.Spanish;
                 case "Turkish":
                     return Language.Turkish;
                 default:
