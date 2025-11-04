@@ -17,4 +17,4 @@ From the [latest release](releases/latest), download the base module (`Roomod.dl
 Building Instructions
 ---
 
-Download the project folder for the base module along with the folder for any extension plugin you want to build, then run `dotnet build` in the extension module's project directory.
+Download the project folder for the base module along with the folder for any extension plugin you want to build, then run `dotnet build` in the extension module's project directory. Requires .NET Framework 3.5 or newer.
