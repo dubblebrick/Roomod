@@ -12,7 +12,7 @@ Features
 Installation
 ---
 
-From the [latest release](releases/latest), download the base module (`Roomod.dll`) along with the extension module corresponding to the game you are modding, and place both files in the BepInEx plugins folder for that game.
+From the [latest release](releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
 
 Building Instructions
 ---
