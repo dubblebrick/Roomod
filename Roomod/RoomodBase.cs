@@ -31,7 +31,7 @@ namespace Roomod
 
             Harmony.CreateAndPatchAll(typeof(BasePatches));
 
-            Logger.LogInfo($"Successfully loaded Roomod Base");
+            Logger.LogInfo($"Successfully loaded Roomod Base!");
         }
 
         public static void CreateCustomLocalization(Languages.Language lang, string path)
@@ -55,6 +55,12 @@ namespace Roomod
 
             customLocalizations.Add(new CustomLocalization(lang, dict));
             Log($"Added custom localization for {lang} from {path}");
+        }
+
+        internal static void Log(string msg)
+        {
+            if (debugEnable.Value)
+                Logger.LogDebug(msg);
         }
 
         /// <summary>
@@ -95,11 +101,6 @@ namespace Roomod
             }
             value = "";
             return false;
-        }
-
-        internal static void Log(string msg)
-        {
-            Logger.LogInfo(msg);
         }
     }
 }
