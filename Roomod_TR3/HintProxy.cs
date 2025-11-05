@@ -17,6 +17,15 @@ namespace Roomod
             hintSpeed = speed;
             // FindNumberOfHintsForRoot() calls Localization.Get(), so it will see custom keys for hint paths
             hintCount = HintManager.FindNumberOfHintsForRoot(hintRoot);
+
+            if (hintCount == 0)
+            {
+                throw new InvalidLocalizationException(
+                    $"Hint root \"{root}\" contains no hints.",
+                    InvalidLocalizationException.ErrorCode.EmptyHintSet,
+                    [root]
+                );
+            }
         }
 
         public void GetHintInfo(HintManager.HintInfoQuery query)

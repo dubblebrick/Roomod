@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Roomod
@@ -21,6 +22,15 @@ namespace Roomod
             {
                 hints.Add(hintKey);
                 hintKey = root + "_H" + (++hintCount + 1).ToString();
+            }
+
+            if (hintCount == 0)
+            {
+                throw new InvalidLocalizationException(
+                    $"Hint root \"{root}\" contains no hints.",
+                    InvalidLocalizationException.ErrorCode.EmptyHintSet,
+                    [root]
+                );
             }
         }
 
