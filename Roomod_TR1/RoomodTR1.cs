@@ -57,6 +57,7 @@ namespace Roomod_TR1
         /// <param name="time">The amount of time in seconds the popup will be displayed for.</param>
         public static void CreateTutorialPopup(string text, float time)
         {
+            // could possibly patch HudManager.SetHelpText() to allow for custom titles like in TR3
             TextManager.Instance.SetText(text, "", time);
         }
 
@@ -67,7 +68,7 @@ namespace Roomod_TR1
         /// <param name="speed">The amount of time it takes to display each hint.</param>
         public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
         {
-            // Hint querying works a bit differently in TR1, requiring a GameObject to which it will send the "GetHintInfo" message.
+            // HintManager.AddHintItem works a bit differently in TR1 from the other two games, requiring a GameObject to which it will send the "GetHintInfo" message.
             GameObject proxyObject = new($"HintProxy_{hintRoot}");
             proxyObject.AddComponent<HintProxy>().PrepareHintQuery(hintRoot, speed);
             HintManager.Instance.AddHintItem(proxyObject);

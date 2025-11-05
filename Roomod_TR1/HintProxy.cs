@@ -14,9 +14,9 @@ namespace Roomod
         {
             hintSpeed = speed;
             hints = new();
+
             int hintCount = 0;
             string hintKey = root + "_H1";
-
             while (Localization.Get(hintKey) != hintKey)
             {
                 hints.Add(hintKey);
@@ -27,9 +27,9 @@ namespace Roomod
         // GetHintInfo will be called by the message sent by HintManager.
         public void GetHintInfo(HintManager.HintInfoQuery query)
         {
-            query.HasBeenFilledIn = true;
             query.Hints = hints;
             query.Speed = hintSpeed;
+            query.HasBeenFilledIn = true;
         }
     }
 }
