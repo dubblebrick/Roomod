@@ -43,6 +43,8 @@ namespace Roomod
             StreamReader sr = new(path);
             string nextLine;
             Dictionary<string, string> dict = new();
+
+            // TODO: Figure out how to support newline characters
             while ((nextLine = sr.ReadLine()) != null)
             {
                 if (Regex.Match(nextLine, "[A-Z1-9_]+=[^=]+").Value != nextLine)
@@ -50,7 +52,9 @@ namespace Roomod
                 dict.Add(nextLine.Split('=')[0], nextLine.Split('=')[1]);
             }
             sr.Close();
+
             customLocalizations.Add(new CustomLocalization(lang, dict));
+            Log($"Added custom localization for {lang} from {path}");
         }
 
         /// <summary>

@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Roomod
 {
-    internal class HintProxyObject : Component, IHintInfo
+    internal class HintProxy : Component, IHintInfo
     {
         private string hintRoot;
         private int hintCount;
         private HintManager.eHintSpeed hintSpeed;
-        internal HintProxyObject(string root, int count, HintManager.eHintSpeed speed)
+        internal HintProxy(string root, int count, HintManager.eHintSpeed speed)
         {
             hintRoot = root;
             hintCount = count;

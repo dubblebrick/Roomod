@@ -24,9 +24,10 @@ namespace Roomod_TR3
 
         private void Update()
         {
-            if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsPressed())
+            if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsDown())
             {
                 HintManager.Instance.UseDebugAcceleratedHints();
+                Log("Accelerated hints activated.");
             }
         }
 
@@ -67,7 +68,7 @@ namespace Roomod_TR3
         {
             // FindNumberOfHintsForRoot() calls Localization.Get(), so it will see custom keys for hint paths
             int hintCount = HintManager.FindNumberOfHintsForRoot(hintRoot);
-            HintManager.Instance.AddHintItem(new HintProxyObject(hintRoot, hintCount, speed));
+            HintManager.Instance.AddHintItem(new HintProxy(hintRoot, hintCount, speed));
             // Look into potentially patching the game to make arbitrary hint times possible
         }
     }
