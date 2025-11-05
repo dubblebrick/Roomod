@@ -53,7 +53,7 @@ namespace Roomod_TR3
         /// <param name="text">The message to display, or a localization key.</param>
         /// <param name="title">The title to display, or a localization key.</param>
         /// <param name="time">The amount of time in seconds that the popup will be displayed for.</param>
-        public static void CreateTutorialPopup(string text, string title = "HUD_HINT_TUTORIAL", float time = 8f)
+        public static void CreateTutorialPopup(string text, float time = 8f, string title = "HUD_HINT_TUTORIAL")
         {
             if (title == string.Empty)
                 title = " ";
