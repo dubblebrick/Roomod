@@ -11,11 +11,12 @@ namespace Roomod
         private string hintRoot;
         private int hintCount;
         private HintManager.eHintSpeed hintSpeed;
-        internal HintProxy(string root, int count, HintManager.eHintSpeed speed)
+        internal HintProxy(string root, HintManager.eHintSpeed speed)
         {
             hintRoot = root;
-            hintCount = count;
             hintSpeed = speed;
+            // FindNumberOfHintsForRoot() calls Localization.Get(), so it will see custom keys for hint paths
+            hintCount = HintManager.FindNumberOfHintsForRoot(hintRoot);
         }
 
         public void GetHintInfo(HintManager.HintInfoQuery query)
