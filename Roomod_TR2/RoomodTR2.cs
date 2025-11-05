@@ -6,7 +6,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Roomod_TR2
 {
-    [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+    [BepInPlugin("com.dubblebrick.roomod.tr2", "Roomod TR2", MyPluginInfo.PLUGIN_VERSION)]
     [BepInProcess("TheRoomTwo.exe")]
     [BepInDependency("com.dubblebrick.roomod.base")]
     public class RoomodTR2 : BaseUnityPlugin
