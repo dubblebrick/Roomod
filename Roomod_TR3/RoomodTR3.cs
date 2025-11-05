@@ -67,9 +67,7 @@ namespace Roomod_TR3
         /// <param name="speed">The amount of time it takes to display each hint.</param>
         public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
         {
-            // FindNumberOfHintsForRoot() calls Localization.Get(), so it will see custom keys for hint paths
-            int hintCount = HintManager.FindNumberOfHintsForRoot(hintRoot);
-            HintManager.Instance.AddHintItem(new HintProxy(hintRoot, hintCount, speed));
+            HintManager.Instance.AddHintItem(new HintProxy(hintRoot, speed));
             // Look into potentially patching the game to make arbitrary hint times possible
         }
     }
