@@ -18,7 +18,6 @@ Installation
 ---
 
 From the [latest release](releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
-<<<<<<< HEAD
 
 Developing with Roomod
 ---
@@ -26,8 +25,6 @@ Developing with Roomod
 Check out [the wiki](wiki) for guides and documentation on the Roomod framework.
 
 Note: The wiki is still heavily WIP and will be missing significant information.
-=======
->>>>>>> e540c7b45bd8dfd897075c59d30d2fdfa5f71b5b
 
 Building Instructions
 ---
