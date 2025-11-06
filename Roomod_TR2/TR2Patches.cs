@@ -30,7 +30,7 @@ namespace Roomod_TR2
             responseNumber = -1;
             foreach (PuzzleItemTypewriter.TypewriterResponse response in RoomodTR2.customResponses)
             {
-                string targetText = Localization.instance.Get(response.PlayerText);
+                string targetText = Localization.instance.Get(response.PlayerText).ToUpper();
                 RoomodTR2.Log($"Typewriter: Comparing {playerText} with target string {targetText}");
                 if (targetText == playerText)
                 {

@@ -82,6 +82,8 @@ namespace Roomod_TR2
         /// <returns><c>true</c> if the response was added successfully</returns>
         public static bool RegisterTypewriterResponse(string keyword, string response)
         {
+            // TODO: Add explicit checks to prevent adding keywords that exist in the base game
+            // These are localization keys SEA_INFINITY, SEA_VOYAGE, SEA_ENDLESS, and SEA_HOPE
             return customResponses.Add(new PuzzleItemTypewriter.TypewriterResponse
             {
                 PlayerText = keyword,

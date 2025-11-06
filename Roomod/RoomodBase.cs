@@ -47,7 +47,7 @@ namespace Roomod
             // TODO: Figure out how to support newline characters
             while ((nextLine = sr.ReadLine()) != null)
             {
-                if (Regex.Match(nextLine, "[A-Z1-9_]+=[^=]+").Value != nextLine)
+                if (Regex.Match(nextLine, "[A-Z1-9_]+=[^=]+").Length != nextLine.Length)
                     throw new InvalidLocalizationException(
                         $"One or more localization keys in \"{path}\" is formatted incorrectly.",
                         InvalidLocalizationException.ErrorCode.InvalidFormat,
