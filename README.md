@@ -19,6 +19,8 @@ More features coming soon!
 Installation
 ---
 
+Requires the x86 version of [BepInEx 5](https://github.com/BepInEx/BepInEx/releases/latest) to be installed on whichever game you are modding.
+
 From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
 
 Developing with Roomod
