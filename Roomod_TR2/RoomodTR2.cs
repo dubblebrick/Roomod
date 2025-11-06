@@ -2,7 +2,9 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using Roomod;
-using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
+using System;
+using System.Text.RegularExpressions;
 
 namespace Roomod_TR2
 {
@@ -12,6 +14,8 @@ namespace Roomod_TR2
     public class RoomodTR2 : BaseUnityPlugin
     {
         internal static new ManualLogSource Logger;
+
+        internal static HashSet<PuzzleItemTypewriter.TypewriterResponse> customResponses = new();
 
         private void Awake()
         {
@@ -41,7 +45,7 @@ namespace Roomod_TR2
         /// <summary>
         /// Creates a message box on the screen.
         /// </summary>
-        /// <param name="message">The message to display, or a localization key.</param>
+        /// <param name="message">The message to display.</param>
         /// <param name="pos">The position of the message box on the screen.</param>
         public static void CreateMessageBox(string message, MessageBox.BoxPosition pos = MessageBox.BoxPosition.Bottom)
         {
@@ -52,10 +56,9 @@ namespace Roomod_TR2
         /// <summary>
         /// Creates a tutorial popup on the screen.
         /// </summary>
-        /// <param name="text">The message to display, or a localization key.</param>
-        /// <param name="title">The title to display, or a localization key.</param>
+        /// <param name="text">The message to display.</param>
         /// <param name="time">The amount of time in seconds that the popup will be displayed for.</param>
-        public static void CreateTutorialPopup(string text, string title = "HUD_HINT_TUTORIAL", float time = 8f)
+        public static void CreateTutorialPopup(string text, float time = 8f)
         {
             // could possibly patch HudManager.SetHelpText() to allow for custom titles like in TR3
             TextManager.Instance.SetText(text, "", time);
@@ -69,6 +72,21 @@ namespace Roomod_TR2
         public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
         {
             HintManager.Instance.AddHintItem(new HintProxy(hintRoot, speed));
+        }
+
+        /// <summary>
+        /// Attempts to register a new typewriter response for a given keyword. If the keyword is already registered, the response won't be added.
+        /// </summary>
+        /// <param name="keyword">The key word that triggers the response.</param>
+        /// <param name="response">The response that the typewriter will generate.</param>
+        /// <returns><c>true</c> if the response was added successfully</returns>
+        public static bool RegisterTypewriterResponse(string keyword, string response)
+        {
+            return customResponses.Add(new PuzzleItemTypewriter.TypewriterResponse
+            {
+                PlayerText = keyword,
+                ResponseText = response
+            });
         }
     }
 }

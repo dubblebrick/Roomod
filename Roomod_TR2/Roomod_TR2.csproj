@@ -22,6 +22,10 @@
     <PackageReference Include="UnityEngine.Modules" Version="5.3.4" IncludeAssets="compile" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Roomod\Roomod.csproj" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
 			<HintPath>lib\Assembly-CSharp.dll</HintPath>
