@@ -12,14 +12,14 @@ With Roomod, you can:
 
 - Override nearly any text
 - Trigger custom text boxes and hints
-- (TR2) Create custom typewriter responses
+- Create custom typewriter responses in TR2
 
 More features coming soon!
 
 Installation
 ---
 
-Requires the x86 version of [BepInEx 5](https://github.com/BepInEx/BepInEx/releases/latest) to be installed on whichever game you are modding.
+Requires the x86 version of BepInEx 5 to be installed on whichever game you are modding. See [this page](https://docs.bepinex.dev/v5.4.21/articles/user_guide/installation/index.html) for a guide on how to download and install it.
 
 From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
 
