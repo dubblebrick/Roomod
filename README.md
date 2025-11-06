@@ -8,9 +8,13 @@ Due to significant techincal differences from the first three games, there is no
 Features
 ---
 
-- Overriding text per language
-- Triggering custom text boxes and hints at any time
-- More features coming soon
+With Roomod, you can:
+
+- Override nearly any text
+- Trigger custom text boxes and hints
+- (TR2) Create custom typewriter responses
+
+More features coming soon!
 
 Installation
 ---
