@@ -19,7 +19,7 @@ More features coming soon!
 Installation
 ---
 
-From the [latest release](releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
+From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
 
 Developing with Roomod
 ---
