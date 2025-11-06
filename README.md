@@ -21,7 +21,9 @@ Installation
 
 Requires the x86 version of BepInEx 5 to be installed on whichever game you are modding. See [this page](https://docs.bepinex.dev/v5.4.21/articles/user_guide/installation/index.html) for a guide on how to download and install it.
 
-From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins folder for that game.
+If you are modding The Room or The Room Two, you need to change the entrypoint settings in the BepInEx config to prevent the game from crashing or freezing as soon as you launch it. The config file is found at `[game directory]\BepInEx\config\BepInEx.cfg` after the first time you launch the game. Change the `Type` setting under `Preloader.Entrypoint` (should be right at the bottom of the file) from `Application` to `MonoBehaviour` and the game should run properly again.
+
+From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest), download and unzip the mod version corresponding to the game you are modding, and place the Roomod folder in the BepInEx plugins directory for that game.
 
 Developing with Roomod
 ---
