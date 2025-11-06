@@ -39,7 +39,7 @@ namespace Roomod_TR3
         /// <summary>
         /// Creates a message box on the screen.
         /// </summary>
-        /// <param name="message">The message to display, or a localization key.</param>
+        /// <param name="message">The message to display.</param>
         /// <param name="pos">The position of the message box on the screen.</param>
         public static void CreateMessageBox(string message, MessageBox.BoxPosition pos = MessageBox.BoxPosition.Bottom)
         {
@@ -50,8 +50,8 @@ namespace Roomod_TR3
         /// <summary>
         /// Creates a tutorial popup on the screen.
         /// </summary>
-        /// <param name="text">The message to display, or a localization key.</param>
-        /// <param name="title">The title to display, or a localization key.</param>
+        /// <param name="text">The message to display.</param>
+        /// <param name="title">The title to display.</param>
         /// <param name="time">The amount of time in seconds that the popup will be displayed for.</param>
         public static void CreateTutorialPopup(string text, float time = 8f, string title = "HUD_HINT_TUTORIAL")
         {
