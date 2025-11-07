@@ -50,8 +50,7 @@ namespace Roomod
                 if (Regex.Match(nextLine, "[A-Z1-9_]+=[^=]+").Length != nextLine.Length)
                     throw new InvalidLocalizationException(
                         $"One or more localization keys in \"{path}\" is formatted incorrectly.",
-                        InvalidLocalizationException.ErrorCode.InvalidFormat,
-                        [path, nextLine]
+                        nextLine
                     );
                 dict.Add(nextLine.Split('=')[0], nextLine.Split('=')[1]);
             }

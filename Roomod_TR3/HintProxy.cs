@@ -22,8 +22,7 @@ namespace Roomod
             {
                 throw new InvalidLocalizationException(
                     $"Hint root \"{root}\" contains no hints.",
-                    InvalidLocalizationException.ErrorCode.EmptyHintSet,
-                    [root]
+                    root
                 );
             }
         }
