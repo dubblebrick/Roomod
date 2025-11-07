@@ -29,8 +29,6 @@ namespace Roomod
             debugEnable = Config.Bind("Debug", "DebugEnable", false, "Whether Roomod's debug features should be enabled.");
             debugFastHintsKeybind = Config.Bind("Debug", "FastHintsKeybind", new KeyboardShortcut(UnityEngine.KeyCode.H), "A keybind to set hint timers to 1 second.");
 
-            Harmony.CreateAndPatchAll(typeof(BasePatches));
-
             Logger.LogInfo($"Successfully loaded Roomod Base!");
         }
 
