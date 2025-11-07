@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Roomod
 {
-    public class Languages
+    public static class Languages
     {
         public enum Language
         {
