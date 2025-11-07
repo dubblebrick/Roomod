@@ -34,7 +34,7 @@ namespace Roomod
             Logger.LogInfo($"Successfully loaded Roomod Base!");
         }
 
-        public static void CreateCustomLocalization(Languages.Language lang, string path)
+        public static void RegisterCustomLocalization(Languages.Language lang, string path)
         {
             path = "BepInEx/plugins/" + path;
             if (!File.Exists(path))
@@ -58,7 +58,7 @@ namespace Roomod
             sr.Close();
 
             customLocalizations.Add(new CustomLocalization(lang, dict));
-            Log($"Added custom localization for {lang} from {path}");
+            Log($"Registered custom localization for {lang} from {path}");
         }
 
         internal static void Log(string msg)
@@ -79,26 +79,6 @@ namespace Roomod
             foreach(CustomLocalization loc in customLocalizations)
             {
                 if (loc.language != lang)
-                    continue;
-                if (loc.TryGetValue(key, out value))
-                    return true;
-            }
-            value = "";
-            return false;
-        }
-
-        /// <summary>
-        /// Searches all custom localization files with a specified language for a value corresponding to a localization key.
-        /// </summary>
-        /// <param name="lang">The name of the language to search for matches in</param>
-        /// <param name="key">The localization key to search for</param>
-        /// <param name="value">When this method returns, <c>value</c> contains the value found, or an empty string if no match was found.</param>
-        /// <returns><c>true</c> if a match was found in any custom localization</returns>
-        public static bool TryGetCustomLocalization(string lang, string key, out string value)
-        {
-            foreach (CustomLocalization loc in customLocalizations)
-            {
-                if (loc.language != Languages.ParseLanguage(lang))
                     continue;
                 if (loc.TryGetValue(key, out value))
                     return true;

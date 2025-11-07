@@ -43,11 +43,10 @@ namespace Roomod_TR1
         /// Creates a message box on the screen.
         /// </summary>
         /// <param name="message">The message to display.</param>
-        /// <param name="position">The position of the message box on the screen.</param>
-        public static void CreateMessageBox(string message, MessageBox.BoxPosition position = MessageBox.BoxPosition.Bottom)
+        public static void CreateMessageBox(string message)
         {
             // maybe add support for callbacks later
-            MessageBox.Instance.DoMessageBox(message, null, 0, position);
+            MessageBox.Instance.DoMessageBox(message, null, 0, MessageBox.BoxPosition.Bottom);
         }
 
         /// <summary>

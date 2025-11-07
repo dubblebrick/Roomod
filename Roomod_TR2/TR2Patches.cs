@@ -13,7 +13,7 @@ namespace Roomod_TR2
         [HarmonyPrefix]
         internal static bool InjectCustomLocalization(Localization __instance, ref string __result, string key)
         {
-            if (RoomodBase.TryGetCustomLocalization(__instance.currentLanguage, key, out string value))
+            if (RoomodBase.TryGetCustomLocalization(Roomod.Languages.ParseLanguage(__instance.currentLanguage), key, out string value))
             {
                 RoomodTR2.Log($"Overwrote localization key {key}");
                 __result = value;
