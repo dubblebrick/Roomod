@@ -10,7 +10,7 @@ Features
 
 With Roomod, you can:
 
-- Override nearly any text
+- Modify nearly any text
 - Trigger custom text boxes and hints
 - Create custom typewriter responses in TR2
 
@@ -35,4 +35,8 @@ Note: The wiki is still heavily WIP and will be missing significant information.
 Building from Source
 ---
 
-Download the project folder for the base module along with the folder for any extension module you want to build, then run `dotnet build` in the extension module's project directory. Requires .NET Framework 3.5 or newer.
+Requires .NET SDK 6 or newer.
+
+1. Download the project folder for the base module along with the folder for any extension module you want to build
+2. Create a folder named `lib` in the extension module's project directory and copy `Assembly-CSharp.dll` from the corresponding game's files.
+3. Run `dotnet build` in the extension module's project directory.
