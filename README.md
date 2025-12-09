@@ -28,7 +28,7 @@ From the [latest release](https://github.com/dubblebrick/Roomod/releases/latest)
 Developing with Roomod
 ---
 
-Check out [the wiki](wiki) for guides and documentation on the Roomod framework.
+Check out [the wiki](https://github.com/dubblebrick/Roomod/wiki) for guides and documentation on the Roomod framework.
 
 Note: The wiki is still heavily WIP and will be missing significant information.
 
@@ -37,6 +37,6 @@ Building from Source
 
 Requires .NET SDK 6 or newer.
 
-1. Download the project folder for the base module along with the folder for any extension module you want to build
+1. Download the project folder for the base module along with the folder for any extension module you want to build.
 2. Create a folder named `lib` in the extension module's project directory and copy `Assembly-CSharp.dll` from the corresponding game's files.
 3. Run `dotnet build` in the extension module's project directory.
