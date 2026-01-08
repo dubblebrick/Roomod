@@ -1,43 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Roomod;
 using UnityEngine;
 
-namespace Roomod
+namespace Roomod_TR2;
+
+internal class HintProxy : Component, IHintInfo
 {
-    internal class HintProxy : Component, IHintInfo
+    private List<string> hints;
+    private HintManager.eHintSpeed hintSpeed;
+    internal HintProxy(string root, HintManager.eHintSpeed speed)
     {
-        private List<string> hints;
-        private HintManager.eHintSpeed hintSpeed;
-        internal HintProxy(string root, HintManager.eHintSpeed speed)
+        hints = new();
+        hintSpeed = speed;
+
+        int hintCount = 0;
+        string hintKey = root + "_H1";
+        while (Localization.instance.Get(hintKey) != hintKey)
         {
-            hints = new();
-            hintSpeed = speed;
-
-            int hintCount = 0;
-            string hintKey = root + "_H1";
-            while (Localization.instance.Get(hintKey) != hintKey)
-            {
-                hints.Add(hintKey);
-                hintKey = root + "_H" + (++hintCount + 1).ToString();
-            }
-
-            if (hintCount == 0)
-            {
-                throw new InvalidLocalizationException(
-                    $"Hint root \"{root}\" contains no hints.",
-                    root
-                );
-            }
+            hints.Add(hintKey);
+            hintKey = root + "_H" + (++hintCount + 1).ToString();
         }
 
-        public void GetHintInfo(HintManager.HintInfoQuery query)
+        if (hintCount == 0)
         {
-            query.Hints = hints;
-            query.Speed = this.hintSpeed;
-            query.Priority = 1;
-            query.HasBeenFilledIn = true;
+            throw new InvalidLocalizationException(
+                $"Hint root \"{root}\" contains no hints.",
+                root
+            );
         }
+    }
+
+    public void GetHintInfo(HintManager.HintInfoQuery query)
+    {
+        query.Hints = hints;
+        query.Speed = this.hintSpeed;
+        query.Priority = 1;
+        query.HasBeenFilledIn = true;
     }
 }

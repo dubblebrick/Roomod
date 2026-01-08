@@ -4,73 +4,72 @@ using HarmonyLib;
 using Roomod;
 using UnityEngine;
 
-namespace Roomod_TR1
+namespace Roomod_TR1;
+
+[BepInPlugin("com.dubblebrick.roomod.tr1", "Roomod TR1", MyPluginInfo.PLUGIN_VERSION)]
+[BepInProcess("TheRoom.exe")]
+[BepInDependency("com.dubblebrick.roomod.base")]
+public class RoomodTR1 : BaseUnityPlugin
 {
-    [BepInPlugin("com.dubblebrick.roomod.tr1", "Roomod TR1", MyPluginInfo.PLUGIN_VERSION)]
-    [BepInProcess("TheRoom.exe")]
-    [BepInDependency("com.dubblebrick.roomod.base")]
-    public class RoomodTR1 : BaseUnityPlugin
+    internal static new ManualLogSource Logger;
+
+    private void Awake()
     {
-        internal static new ManualLogSource Logger;
+        // Plugin startup logic
+        Logger = base.Logger;
 
-        private void Awake()
+        Harmony.CreateAndPatchAll(typeof(TR1Patches));
+
+        Logger.LogInfo($"Successfully loaded Roomod TR1!");
+    }
+
+    private void Update()
+    {
+        if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsDown())
         {
-            // Plugin startup logic
-            Logger = base.Logger;
-
-            Harmony.CreateAndPatchAll(typeof(TR1Patches));
-
-            Logger.LogInfo($"Successfully loaded Roomod TR1!");
+            HintManager.Instance.UseDebugAcceleratedHints();
+            Log("Accelerated hints activated");
         }
+    }
 
-        private void Update()
-        {
-            if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsDown())
-            {
-                HintManager.Instance.UseDebugAcceleratedHints();
-                Log("Accelerated hints activated");
-            }
-        }
+    // debug log method
+    internal static void Log(string msg)
+    {
+        if (RoomodBase.debugEnable.Value)
+            Logger.LogDebug(msg);
+    }
 
-        // debug log method
-        internal static void Log(string msg)
-        {
-            if (RoomodBase.debugEnable.Value)
-                Logger.LogDebug(msg);
-        }
+    /// <summary>
+    /// Creates a message box on the screen.
+    /// </summary>
+    /// <param name="message">The message to display.</param>
+    public static void CreateMessageBox(string message)
+    {
+        // maybe add support for callbacks later
+        MessageBox.Instance.DoMessageBox(message, null, 0, MessageBox.BoxPosition.Bottom);
+    }
 
-        /// <summary>
-        /// Creates a message box on the screen.
-        /// </summary>
-        /// <param name="message">The message to display.</param>
-        public static void CreateMessageBox(string message)
-        {
-            // maybe add support for callbacks later
-            MessageBox.Instance.DoMessageBox(message, null, 0, MessageBox.BoxPosition.Bottom);
-        }
+    /// <summary>
+    /// Creates a tutorial popup on the screen.
+    /// </summary>
+    /// <param name="text">The message to display.</param>
+    /// <param name="time">The amount of time in seconds the popup will be displayed for.</param>
+    public static void CreateTutorialPopup(string text, float time)
+    {
+        // could possibly patch HudManager.SetHelpText() to allow for custom titles like in TR3
+        TextManager.Instance.SetText(text, "", time);
+    }
 
-        /// <summary>
-        /// Creates a tutorial popup on the screen.
-        /// </summary>
-        /// <param name="text">The message to display.</param>
-        /// <param name="time">The amount of time in seconds the popup will be displayed for.</param>
-        public static void CreateTutorialPopup(string text, float time)
-        {
-            // could possibly patch HudManager.SetHelpText() to allow for custom titles like in TR3
-            TextManager.Instance.SetText(text, "", time);
-        }
-
-        /// <summary>
-        /// Registers a set of hints to be displayed.
-        /// </summary>
-        /// <param name="hintRoot">The root of the localization keys for all elements of the hint set.</param>
-        /// <param name="speed">The amount of time it takes to display each hint.</param>
-        public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
-        {
-            // HintManager.AddHintItem works a bit differently in TR1 from the other two games, requiring a GameObject to which it will send the "GetHintInfo" message.
-            GameObject proxyObject = new($"HintProxy_{hintRoot}");
-            proxyObject.AddComponent<HintProxy>().PrepareHintQuery(hintRoot, speed);
-            HintManager.Instance.AddHintItem(proxyObject);
-        }
+    /// <summary>
+    /// Registers a set of hints to be displayed.
+    /// </summary>
+    /// <param name="hintRoot">The root of the localization keys for all elements of the hint set.</param>
+    /// <param name="speed">The amount of time it takes to display each hint.</param>
+    public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
+    {
+        // HintManager.AddHintItem works a bit differently in TR1 from the other two games, requiring a GameObject to which it will send the "GetHintInfo" message.
+        GameObject proxyObject = new($"HintProxy_{hintRoot}");
+        proxyObject.AddComponent<HintProxy>().PrepareHintQuery(hintRoot, speed);
+        HintManager.Instance.AddHintItem(proxyObject);
     }
 }

@@ -1,16 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
-namespace Roomod
+namespace Roomod;
+
+/// <summary>
+/// Exception thrown for errors related to localization files
+/// </summary>
+public class InvalidLocalizationException : IOException
 {
-    /// <summary>
-    /// Exception thrown for errors related to localization files
-    /// </summary>
-    public class InvalidLocalizationException : IOException
+    public InvalidLocalizationException(string message, string source) : base(message)
     {
-        public InvalidLocalizationException(string message, string source) : base(message)
-        {
-            Source = source;
-        }
+        Source = source;
     }
 }
