@@ -11,7 +11,7 @@ internal class TR1Patches
     {
         if (RoomodBase.TryGetCustomLocalization(Languages.ParseLanguage(Localization.language), key, out string value))
         {
-            RoomodTR1.Log($"Overwrote localization key {key}.");
+            RoomodBase.Log($"Overwrote localization key {key}.");
             __result = value;
             return false;
         }

@@ -57,7 +57,7 @@ public class RoomodBase : BaseUnityPlugin
         Log($"Registered custom localization for {lang} from {path}");
     }
 
-    internal static void Log(string msg)
+    public static void Log(string msg)
     {
         if (debugEnable.Value)
             Logger.LogDebug(msg);

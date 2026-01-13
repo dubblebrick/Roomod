@@ -30,14 +30,8 @@ public class RoomodTR2 : BaseUnityPlugin
         if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsDown())
         {
             HintManager.Instance.UseDebugAcceleratedHints();
-            Log("Accelerated hints activated");
+            RoomodBase.Log("Accelerated hints activated");
         }
-    }
-
-    internal static void Log(string msg)
-    {
-        if (RoomodBase.debugEnable.Value)
-            Logger.LogDebug(msg);
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ internal class TR2Patches
     {
         if (RoomodBase.TryGetCustomLocalization(Roomod.Languages.ParseLanguage(__instance.currentLanguage), key, out string value))
         {
-            RoomodTR2.Log($"Overwrote localization key {key}");
+            RoomodBase.Log($"Overwrote localization key {key}");
             __result = value;
             return false;
         }
@@ -27,15 +27,15 @@ internal class TR2Patches
         foreach (PuzzleItemTypewriter.TypewriterResponse response in RoomodTR2.customResponses)
         {
             string targetText = Localization.instance.Get(response.PlayerText).ToUpper();
-            RoomodTR2.Log($"Typewriter: Comparing {playerText} with target string {targetText}");
+            RoomodBase.Log($"Typewriter: Comparing {playerText} with target string {targetText}");
             if (targetText == playerText)
             {
-                RoomodTR2.Log("Match found!");
+                RoomodBase.Log("Match found!");
                 __result = response;
                 return false;
             }
         }
-        RoomodTR2.Log("No match found; falling through to original method.");
+        RoomodBase.Log("No match found; falling through to original method.");
         return true;
     }
 }
