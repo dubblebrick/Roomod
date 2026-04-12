@@ -12,6 +12,7 @@ With Roomod, you can:
 
 - Modify nearly any text
 - Trigger custom text boxes and hints
+- Load different levels at any time
 - Create custom typewriter responses in TR2
 
 More features coming soon!
