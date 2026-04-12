@@ -34,7 +34,9 @@ public class RoomodBase : BaseUnityPlugin
     {
         path = "BepInEx/plugins/" + path;
         if (!File.Exists(path))
+        {
             throw new FileNotFoundException($"File \"{path}\" could not be found.");
+        }
 
         StreamReader sr = new(path);
         string nextLine;
@@ -43,11 +45,13 @@ public class RoomodBase : BaseUnityPlugin
         // TODO: Figure out how to support newline characters
         while ((nextLine = sr.ReadLine()) != null)
         {
-            if (Regex.Match(nextLine, "[A-Z1-9_]+=.+").Length != nextLine.Length)
+            if (Regex.IsMatch(nextLine, "^[A-Z1-9_]+=.+"))
+            {
                 throw new InvalidLocalizationException(
                     $"One or more localization keys in \"{path}\" is formatted incorrectly.",
                     nextLine
                 );
+            }
             string[] splitString = nextLine.Split(['='], 2);
             dict.Add(splitString[0], splitString[1]);
         }
@@ -60,7 +64,9 @@ public class RoomodBase : BaseUnityPlugin
     public static void Log(string msg)
     {
         if (debugEnable.Value)
+        {
             Logger.LogDebug(msg);
+        }
     }
 
     /// <summary>
@@ -75,9 +81,13 @@ public class RoomodBase : BaseUnityPlugin
         foreach(CustomLocalization loc in customLocalizations)
         {
             if (loc.language != lang)
+            {
                 continue;
+            }
             if (loc.TryGetValue(key, out value))
+            {
                 return true;
+            }
         }
         value = "";
         return false;

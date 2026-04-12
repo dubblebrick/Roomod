@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
+using Roomod;
 
 namespace Roomod_TR3;
 
 internal class HintProxy : Component, IHintInfo
 {
-    private string hintRoot;
-    private int hintCount;
-    private HintManager.eHintSpeed hintSpeed;
-    internal HintProxy(string root, HintManager.eHintSpeed speed)
+    public readonly string hintRoot;
+    public readonly int hintCount;
+    public readonly float hintSpeed;
+    internal HintProxy(string root, float speed)
     {
         hintRoot = root;
         hintSpeed = speed;
@@ -23,11 +24,12 @@ internal class HintProxy : Component, IHintInfo
         }
     }
 
+    // GetHintInfo is called by the hint manager when the hint is being registered.
     public void GetHintInfo(HintManager.HintInfoQuery query)
     {
         query.HintRoot = this.hintRoot;
         query.HintCount = this.hintCount;
-        query.Speed = this.hintSpeed;
+        query.Speed = HintManager.eHintSpeed.Medium;
         query.Priority = 1;
         query.HasBeenFilledIn = true;
     }

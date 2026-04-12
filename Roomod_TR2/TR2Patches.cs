@@ -16,7 +16,9 @@ internal class TR2Patches
             return false;
         }
         else
+        {
             return true;
+        }
     }
 
     [HarmonyPatch(typeof(PuzzleItemTypewriter), "GetAIResponse")]

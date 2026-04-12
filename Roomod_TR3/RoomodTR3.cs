@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using Roomod;
+using System.Collections.Generic;
 
 namespace Roomod_TR3;
 
@@ -26,13 +27,8 @@ public class RoomodTR3 : BaseUnityPlugin
         if (RoomodBase.debugEnable.Value && RoomodBase.debugFastHintsKeybind.Value.IsDown())
         {
             HintManager.Instance.UseDebugAcceleratedHints();
-            Log("Accelerated hints activated.");
+            RoomodBase.Log("Accelerated hints activated.");
         }
-    }
-
-    internal static void Log(string msg)
-    {
-        Logger.LogDebug(msg);
     }
 
     /// <summary>
@@ -55,18 +51,53 @@ public class RoomodTR3 : BaseUnityPlugin
     public static void CreateTutorialPopup(string text, float time = 8f, string title = "HUD_HINT_TUTORIAL")
     {
         if (title == string.Empty)
+        {
             title = " ";
+        }
         HintTextManager.Instance.ShowText(text, title, time);
     }
 
     /// <summary>
-    /// Registers a set of hints to be displayed.
+    /// Registers a set of hints to be displayed. The hints will be displayed after a specified amount of time, with hints after the first taking half as much time.
     /// </summary>
     /// <param name="hintRoot">The root of the localization keys for all elements of the hint set.</param>
-    /// <param name="speed">The amount of time it takes to display each hint.</param>
-    public static void RegisterHintSet(string hintRoot, HintManager.eHintSpeed speed = HintManager.eHintSpeed.Medium)
+    /// <param name="speed">The amount of time in seconds it takes to display the first hint.</param>
+    public static void RegisterHintSet(string hintRoot, float speed = 60)
     {
-        HintManager.Instance.AddHintItem(new HintProxy(hintRoot, speed));
-        // Look into potentially patching the game to make arbitrary hint times possible
+        HintProxy hint = new HintProxy(hintRoot, speed);
+        HintManager.Instance.AddHintItem(hint);
+    }
+
+    /// <summary>
+    /// Changes the current level number, and loads the corresponding map.
+    /// </summary>
+    /// <param name="level">The level number to switch to.</param>
+    /// <remarks>
+    /// This method sets the gamemode to story mode, which enables normal game progress and saving. Use <code>BoxGameStateManager.LoadLevel()</code> to change levels while setting freeplay mode.
+    /// </remarks>
+    public static void ChangeLevel(int level)
+    {
+        TR3Patches.LoadLevelStory(BoxGameStateManager.Instance, level);
+    }
+
+    internal static float CheckCustomHintTimes(float originalTime, UnityEngine.Component hintOwner)
+    {
+        RoomodBase.Log("Checking for custom hint...");
+        // If accelerated hints were activated, fall through and use the standard hint time which is now 1 second.
+        if (HintManager.Instance.HintTimes[0] == 1f)
+        {
+            RoomodBase.Log("Accelerated hints active, falling through to default time.");
+            return originalTime;
+        }
+        else if (hintOwner is HintProxy proxy)
+        {
+            RoomodBase.Log($"Using custom hint time of {proxy.hintSpeed} seconds.");
+            return proxy.hintSpeed;
+        }
+        else
+        {
+            RoomodBase.Log("Not a custom hint, falling through to default.");
+            return originalTime;
+        }
     }
 }
